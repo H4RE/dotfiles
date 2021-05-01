@@ -1,0 +1,19 @@
+{
+  "title": "My Settings",
+  "rules":
+  [
+	  {
+		  "description": "Ctrl + j --> Return",
+		  "manipulators":[
+			  {
+			  "type": "basic",
+			  "from":{
+				  "key_code": "j",
+				  "modifiers":{"mandatory":["control"]}
+			  },
+			  "to":[{"key_code": "return_or_enter"}]
+			  }
+		  ]
+	  }
+  ]
+}
