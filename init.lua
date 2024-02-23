@@ -49,19 +49,12 @@ vim.api.nvim_set_keymap('n', '<leader>f', ':NERDTreeToggle<CR>', { noremap = tru
 local vim = vim
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
-Plug('neoclide/coc.nvim', {['brance']='release'})
+Plug('neoclide/coc.nvim', {['branch']='release'})
 Plug('preservim/nerdtree')
 Plug('rebelot/kanagawa.nvim') -- colorscheme
 Plug('tpope/vim-commentary')
 
--- Plug ('iamcco/markdown-preview.nvim')
--- 公式のやり方
--- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
--- これだとうまくいかなかったので
--- nodejsがインストール済みの状況で、C:\Users\HOGE\AppData\Roaming\npm
--- npmディレクトリがないので作成し
--- C:\Users\h4reh\AppData\Local\nvim-data\plugged\markdown-preview.nvim\app
--- ここでnpx yarn installを実行
+Plug ('iamcco/markdown-preview.nvim')
 
 
 Plug('pepo-le/win-ime-con.nvim') 
@@ -71,3 +64,13 @@ Plug('pepo-le/win-ime-con.nvim')
 vim.call('plug#end')
 
 vim.cmd([[colorscheme kanagawa]])
+
+
+
+function grep_current_word()
+    local word =vim.fn.expand('<cword>')
+    vim.cmd('CocList grep ' .. word)
+end
+
+
+vim.api.nvim_set_keymap('n','<leader>;',':lua grep_current_word()<CR>', {noremap=true, silent=true})
