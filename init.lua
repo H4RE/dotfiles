@@ -1,3 +1,16 @@
+if vim.fn.has("win64") then
+    vim.opt.shell ="powershell"
+    -- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    vim.opt.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
+    vim.opt.shellxquote = ''
+end
+
+vim.opt.encoding="utf-8" -- バッファ内での文字コード
+vim.opt.fileencoding = "utf-8" -- 書き込み時にutf8
+-- vim.opt.fileencodings = "utf-8" --読み込み時utf8->shiftjisで自動判別
+-- これをつけるとrで文字化けしてしまう。。。
+vim.g.python3_host_prog='C:/Python312/python.exe'
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -11,13 +24,10 @@ vim.opt.shiftwidth = 4   -- >>/<<で挿入されるspace(tabexpand=falseならta
 vim.o.tags = './tags;'
 
 
-vim.o.foldmethod = "syntax"
-vim.o.foldlevel = 1
+vim.opt.foldmethod = "syntax"
+vim.opt.foldlevel = 1
 
 
-if vim.fn.has("win64") then
-    vim.opt.shell ="powershell"
-end
 
 vim.g.mapleader = " "
 
@@ -43,6 +53,21 @@ Plug('neoclide/coc.nvim', {['brance']='release'})
 Plug('preservim/nerdtree')
 Plug('rebelot/kanagawa.nvim') -- colorscheme
 Plug('tpope/vim-commentary')
+
+-- Plug ('iamcco/markdown-preview.nvim')
+-- 公式のやり方
+-- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+-- これだとうまくいかなかったので
+-- nodejsがインストール済みの状況で、C:\Users\HOGE\AppData\Roaming\npm
+-- npmディレクトリがないので作成し
+-- C:\Users\h4reh\AppData\Local\nvim-data\plugged\markdown-preview.nvim\app
+-- ここでnpx yarn installを実行
+
+
+Plug('pepo-le/win-ime-con.nvim') 
+
+
+
 vim.call('plug#end')
 
 vim.cmd([[colorscheme kanagawa]])
